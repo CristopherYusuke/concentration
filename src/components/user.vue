@@ -4,6 +4,7 @@
             <label>Nome</label>
             <input class="form-control" type="text" name="" id="">
         </div>
+        <router-link class="btn btn-primary" :to="{ path: 'cards' }" >Ir para o jogo</router-link>
     </div>
 </template>
 
@@ -14,11 +15,5 @@ export default {
 </script>
 
 <style scoped  >
-#user {
- 
-}
-input{
-
-}
 
 </style>

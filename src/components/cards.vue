@@ -1,15 +1,16 @@
 <template>
-  <div class="hello">
-    
+  <div class="cards">
+    <h1> Usuário: {{username}} </h1>    
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Grid',
+  name: 'Cards',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      username: 'asdf'
     }
   }
 }

@@ -1,1 +1,3 @@
-export default {}
+export default {
+  username: state => state.username
+}

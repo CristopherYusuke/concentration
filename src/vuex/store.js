@@ -6,16 +6,22 @@ import getters from './getters'
 import mutations from './mutations'
 
 vue.use(Vuex)
+const localStoragePlugin = (store) => {
+  store.subscribe((mutation, state) => {
+    localStorage.setItem('state', JSON.stringify(state))
+  })
+}
 
 const state = {
   username: '',
   turn: 0,
   cards: []
-
 }
+
 export default new Vuex.Store({
   state,
   actions,
   getters,
-  mutations
+  mutations,
+  plugins: [localStoragePlugin]
 })

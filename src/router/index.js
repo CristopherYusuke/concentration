@@ -1,15 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Cards from '@/components/cards'
+import User from '@/components/user'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
+      path: '/cards',
+      name: 'Cards',
+      component: Cards
+    },
+    {
       path: '/',
-      name: 'Hello',
-      component: HelloWorld
+      name: 'User',
+      component: User
     }
+
   ]
 })

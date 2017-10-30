@@ -1,7 +1,7 @@
 <template>
   <div class="card-container" v-on:click="flip">
     <div class="card" v-bind:class="{ flipped: option.flipped}">
-      <div class="front" v-bind:class="{[option.cardName]: option.flipped }" >
+      <div class="front" :style="`background-color: var(--${option.cardName.toLowerCase()})` " >
         <p>{{ option.cardName }}</p>
       </div>
       <div class="back " ></div>

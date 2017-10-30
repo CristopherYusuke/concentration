@@ -7,11 +7,18 @@
 </template>
 
 <script>
+
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'app'
+  name: 'app',
+  created () {
+    this.reset()
+  },
+  methods: {
+    ...mapActions([
+      'reset'
+    ])
+  }
 }
 </script>
-
-<style>
-
-</style>

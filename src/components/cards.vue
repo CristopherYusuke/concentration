@@ -24,8 +24,9 @@ export default {
   },
   methods: {
     flipped () {
-      console.log('asdf')
     }
+  },
+  mounted () {
   },
   computed: {
     ...mapGetters([
@@ -41,6 +42,11 @@ export default {
 h1, h2 {
   font-weight: normal;
   margin-bottom:20px;
+}
+
+.cards {
+  width: 580px;
+  margin: 0 auto;
 }
 
 </style>

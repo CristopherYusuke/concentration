@@ -18,7 +18,10 @@ export default {
   },
   reset ({commit}) {
     commit('reset', {
-      card: shuffle(cardColor.concat(cardColor)).map(name => ({flipped: false, cardName: name}))
+      cards: shuffle(cardColor.concat(cardColor)).map(name => ({flipped: false, cardName: name}))
     })
+  },
+  flipCard ({commit}, card) {
+    commit('flip', card)
   }
 }

@@ -1,11 +1,14 @@
 <template>
-  <div class="container" v-on:click="flip">
-    <div class="card" v-bind:class="{ flipped: option.flipped }">
+  <div class="card" v-on:click="flip">
+    <div class="card-container" v-bind:class="{ flipped: option.flipped }">
     </div>
   </div>
 </template>
 
 <script>
+
+import {mapActions} from 'vuex'
+
 export default {
   name: 'card',
   props: {
@@ -20,19 +23,37 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'flipCard'
+    ]),
     flip () {
-      console.log('teste')
+      if (this.option.flipped) {
+        return
+      }
+      this.flipCard(this.option)
     }
   }
 }
 </script>
 
 <style>
+.card{
+    width: 100px;
+    height: 100px;
+    margin: 3px;
+    cursor: pointer;
+    position: relative;
+    perspective: 800px;
+}
+.card-container {
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
 
-.card {
-  width: 100px;
-  height: 100px;
-
+.card-container.flipped {
+    transform: rotateY( 180deg );
 }
 
 .blue {

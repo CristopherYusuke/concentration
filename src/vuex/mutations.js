@@ -8,8 +8,11 @@ export default {
     state.username = username
   },
   reset (state, obj) {
-    state.cards = obj.cards
-    state.turn = obj.turn
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        state[key] = obj[key]
+      }
+    }
   },
   flip,
   flipCards (state, cards) {
@@ -20,7 +23,6 @@ export default {
     state.turn++
   },
   verifyGameScore (state) {
-    let hasFalseCard = state.cards.some(card => card.flipped)
-    console.log('veryfiGame', hasFalseCard)
+    state.gameWinner = state.cards.every(card => card.flipped)
   }
 }

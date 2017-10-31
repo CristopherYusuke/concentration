@@ -16,9 +16,11 @@ export default {
     let name = username.charAt(0).toUpperCase() + username.slice(1)
     commit('saveUser', name)
   },
-  reset ({commit}) {
+  reset ({commit}, opts) {
     commit('reset', {
+      ...opts,
       turn: 0,
+      gameWinner: false,
       cards: shuffle(cardColor.concat(cardColor)).map(name => ({flipped: false, cardName: name}))
     })
   },

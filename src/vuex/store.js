@@ -15,6 +15,7 @@ const localStoragePlugin = (store) => {
 const state = {
   username: '',
   turn: 0,
+  gameWinner: false,
   cards: []
 }
 

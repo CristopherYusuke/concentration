@@ -5,13 +5,24 @@
     </b-row>
     <b-row>
       <h5>Turnos: {{ turn}}</h5>
-    </b-row> 
+    </b-row>
     <b-row>
-      <card v-for="(card, index) of cards" :key="index" :option="card" @flipped="onFlipACard"    />
+      <card v-for="(card, index) of cards" :key="index" :option="card" @flipped="onFlipACard" />
     </b-row>
     <b-row>
       <b-button size="lg" variant="secondary" @click="reinitialize()" > Reiniciar</b-button>
     </b-row>
+    <b-modal id="modal1" title="Parabéns" :visible='!gameWinner'>
+      <p clas="my-4">Parabéns {{username}} seus pontos foram de {{turn}}!</p>
+      <div slot="modal-footer" class="w-100">
+        <b-btn size="sm" class="float-left" variant="primary" @click="show=false">
+          Ver Ranking
+        </b-btn>
+        <b-btn size="sm" class="float-right" variant="primary" @click="show=false">
+          Novo jogo
+        </b-btn>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -53,16 +64,16 @@ export default {
       }
     },
     reinitialize () {
-      this.$router.push({path: '/'})
-      this.reset()
+      // this.$router.push({path: '/'})
+      let username = this.username
+      this.reset({username})
     }
-  },
-  mounted () {
   },
   computed: {
     ...mapGetters([
       'username',
       'turn',
+      'gameWinner',
       'cards'
     ])
   }
@@ -76,7 +87,7 @@ h1, h2 {
 }
 
 .cards {
-  width: 580px;
+  width: 485px;
   margin: 0 auto;
 }
 button {

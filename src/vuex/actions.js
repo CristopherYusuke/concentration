@@ -18,6 +18,7 @@ export default {
   },
   reset ({commit}) {
     commit('reset', {
+      turn: 0,
       cards: shuffle(cardColor.concat(cardColor)).map(name => ({flipped: false, cardName: name}))
     })
   },
@@ -27,7 +28,10 @@ export default {
   flipCards ({commit}, cards) {
     commit('flipCards', cards)
   },
+  addTurn ({commit}) {
+    commit('addTurn')
+  },
   match ({commit}) {
-    console.log('ola mundo')
+    commit('verifyGameScore')
   }
 }

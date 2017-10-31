@@ -45,7 +45,7 @@ export default {
 .card-container{
     width: 100px;
     height: 100px;
-    margin: 3px;
+    margin: 3px 3px 3px 0px;
     cursor: pointer;
     position: relative;
     perspective: 800px;
@@ -53,7 +53,7 @@ export default {
 .card {
     width: 100%;
     height: 100%;
-    transition: transform 1s;
+    transition: transform 0.5s;
     transform-style: preserve-3d;
 }
 
@@ -81,7 +81,6 @@ export default {
   line-height: 14px;
   height: 100px;
   width: 100px;
-  margin: 0px;
   display: table-cell;
   vertical-align: middle;
   text-align: center;

@@ -4,7 +4,13 @@
       <h1> Usuário: {{username}} </h1>
     </b-row>
     <b-row>
+      <h5>Turnos: {{ turn}}</h5>
+    </b-row> 
+    <b-row>
       <card v-for="(card, index) of cards" :key="index" :option="card" @flipped="onFlipACard"    />
+    </b-row>
+    <b-row>
+      <b-button size="lg" variant="secondary" @click="reinitialize()" > Reiniciar</b-button>
     </b-row>
   </div>
 </template>
@@ -25,21 +31,30 @@ export default {
   methods: {
     ...mapActions([
       'flipCards',
+      'reset',
+      'addTurn',
       'match'
     ]),
     onFlipACard (flippedCard) {
       if (!this.lastCard) {
         this.lastCard = flippedCard
-      } else if (this.lastCard.cardName === flippedCard.cardName) {
-        this.lastCard = null
-        this.match()
       } else {
-        let lastCard = this.lastCard
-        this.lastCard = null
-        setTimeout(() => {
-          this.flipCards([lastCard, flippedCard])
-        }, 1000)
+        this.addTurn()
+        if (this.lastCard.cardName === flippedCard.cardName) {
+          this.lastCard = null
+          this.match()
+        } else {
+          let lastCard = this.lastCard
+          this.lastCard = null
+          setTimeout(() => {
+            this.flipCards([lastCard, flippedCard])
+          }, 750)
+        }
       }
+    },
+    reinitialize () {
+      this.$router.push({path: '/'})
+      this.reset()
     }
   },
   mounted () {
@@ -47,13 +62,13 @@ export default {
   computed: {
     ...mapGetters([
       'username',
+      'turn',
       'cards'
     ])
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
   font-weight: normal;
@@ -63,6 +78,9 @@ h1, h2 {
 .cards {
   width: 580px;
   margin: 0 auto;
+}
+button {
+  margin-top: 10px;
 }
 
 </style>

@@ -31,7 +31,6 @@ export default {
   },
   methods: {
     refactory () {
-      console.log('olamundo')
       return this.ranks
         .sort((a, b) => a.turn - b.turn)
         .map((rank, index) => ({ ...rank, index: (index + 1) + 'º' }))

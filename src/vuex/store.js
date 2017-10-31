@@ -16,7 +16,8 @@ const state = {
   username: '',
   turn: 0,
   gameWinner: false,
-  cards: []
+  cards: [],
+  ranks: []
 }
 
 export default new Vuex.Store({

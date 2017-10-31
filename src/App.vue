@@ -5,7 +5,7 @@
       <b-navbar-brand @click="goTo('/')" >Home</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-nav is-nav-bar>
-          <b-nav-item @click="goTo('/')">Rank</b-nav-item>
+          <b-nav-item @click="goTo('/ranking')">Rank</b-nav-item>
           <b-nav-item @click="goTo('/cards')">Jogo</b-nav-item>
         </b-nav>
       </b-collapse>

@@ -15,6 +15,11 @@ import {mapActions} from 'vuex'
 
 export default {
   name: 'card',
+  data () {
+    return {
+      show: false
+    }
+  },
   props: {
     option: {
       type: Object,
@@ -53,6 +58,7 @@ export default {
 .card {
     width: 100%;
     height: 100%;
+    transition: 0.7s;
     transform-style: preserve-3d;
 }
 

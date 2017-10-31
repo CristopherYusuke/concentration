@@ -33,6 +33,9 @@ export default {
   addTurn ({commit}) {
     commit('addTurn')
   },
+  addRank ({commit}, rank) {
+    commit('addRank', rank)
+  },
   match ({commit}) {
     commit('verifyGameScore')
   }

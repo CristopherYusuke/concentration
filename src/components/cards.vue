@@ -6,22 +6,20 @@
     <b-row>
       <h5>Turnos: {{ turn}}</h5>
     </b-row>
-    <b-row>
-      <card v-for="(card, index) of cards" :key="index" :option="card" @flipped="onFlipACard" />
+    <b-row v-if="!gameWinner">
+      <card v-for="(card, index) of cards" :key="index" :option="card" @flipped="onFlipACard"  />
     </b-row>
     <b-row>
-      <b-button size="lg" variant="secondary" @click="reinitialize()" > Reiniciar</b-button>
+      <b-button  variant="secondary" @click="reinitialize()" > Reiniciar</b-button>
     </b-row>
-    <b-modal id="modal1" title="Parabéns" :visible='!gameWinner'>
-      <p clas="my-4">Parabéns {{username}} seus pontos foram de {{turn}}!</p>
-      <div slot="modal-footer" class="w-100">
-        <b-btn size="sm" class="float-left" variant="primary" @click="show=false">
+    <b-modal ref="modal" :hide-header="true" :hide-footer="true" body-bg-variant="success" body-text-variant="light" :visible='gameWinner'>
+      <h1 clas="my-4">Parabéns {{username}} você resolveu o jogo em {{turn}} rodadas!</h1>
+        <b-btn size="sm" class="float-left" variant="primary" @click="goToRanking">
           Ver Ranking
         </b-btn>
-        <b-btn size="sm" class="float-right" variant="primary" @click="show=false">
+        <b-btn size="sm" class="float-right" variant="primary" @click="restart">
           Novo jogo
         </b-btn>
-      </div>
     </b-modal>
   </div>
 </template>
@@ -34,16 +32,12 @@ import card from '@/components/card'
 export default {
   name: 'Cards',
   components: {card},
-  data () {
-    return {
-      lastCard: null
-    }
-  },
   methods: {
     ...mapActions([
       'flipCards',
       'reset',
       'addTurn',
+      'addRank',
       'match'
     ]),
     onFlipACard (flippedCard) {
@@ -54,6 +48,13 @@ export default {
         if (this.lastCard.cardName === flippedCard.cardName) {
           this.lastCard = null
           this.match()
+          if (this.gameWinner) {
+            let {username, turn} = this
+            this.addRank({
+              username,
+              turn
+            })
+          }
         } else {
           let lastCard = this.lastCard
           this.lastCard = null
@@ -64,8 +65,17 @@ export default {
       }
     },
     reinitialize () {
-      // this.$router.push({path: '/'})
+      this.$router.push({path: '/'})
+      this.reset()
+    },
+    goToRanking () {
+      this.$router.push({path: '/ranking'})
+      this.$refs.modal.hide()
+      this.reset()
+    },
+    restart () {
       let username = this.username
+      this.$refs.modal.hide()
       this.reset({username})
     }
   },

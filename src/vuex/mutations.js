@@ -16,7 +16,6 @@ export default {
   },
   flip,
   flipCards (state, cards) {
-    console.log('aquui')
     cards.forEach((card) => flip(state, card))
   },
   addTurn (state) {
@@ -24,5 +23,8 @@ export default {
   },
   verifyGameScore (state) {
     state.gameWinner = state.cards.every(card => card.flipped)
+  },
+  addRank (state, rank) {
+    state.ranks.push(rank)
   }
 }

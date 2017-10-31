@@ -4,14 +4,14 @@
       <h1> Usuário: {{username}} </h1>
     </b-row>
     <b-row>
-      <card v-for="(card, index) of cards" :key="index" :option="card" @click="flipped"    />
+      <card v-for="(card, index) of cards" :key="index" :option="card" @flipped="onFlipACard"    />
     </b-row>
   </div>
 </template>
 
 <script>
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import card from '@/components/card'
 
 export default {
@@ -19,11 +19,27 @@ export default {
   components: {card},
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      lastCard: null
     }
   },
   methods: {
-    flipped () {
+    ...mapActions([
+      'flipCards',
+      'match'
+    ]),
+    onFlipACard (flippedCard) {
+      if (!this.lastCard) {
+        this.lastCard = flippedCard
+      } else if (this.lastCard.cardName === flippedCard.cardName) {
+        this.lastCard = null
+        this.match()
+      } else {
+        let lastCard = this.lastCard
+        this.lastCard = null
+        setTimeout(() => {
+          this.flipCards([lastCard, flippedCard])
+        }, 1000)
+      }
     }
   },
   mounted () {

@@ -35,6 +35,7 @@ export default {
         return
       }
       this.flipCard(this.option)
+      this.$emit('flipped', this.option)
     }
   }
 }

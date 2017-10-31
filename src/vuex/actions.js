@@ -23,5 +23,11 @@ export default {
   },
   flipCard ({commit}, card) {
     commit('flip', card)
+  },
+  flipCards ({commit}, cards) {
+    commit('flipCards', cards)
+  },
+  match ({commit}) {
+    console.log('ola mundo')
   }
 }

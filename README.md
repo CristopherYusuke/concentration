@@ -1,6 +1,6 @@
 # concentration
 
-> A Vue.js project
+> A Vue.js project based on  [leftstick](https://leftstick.github.io/vue-memory-game/)  vue project for study purpose 
 
 ## Build Setup
 
